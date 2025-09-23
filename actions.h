@@ -4,8 +4,8 @@
 // Actuators
 
 typedef struct {
-   int (*emailSender)(const char *to, const char *subject,
-                           const char *body, const char *from);
+  int (*emailSender)(const char *to, const char *subject, const char *body,
+                     const char *from);
 } Actuators;
 
 Actuators getActuatorSet();
