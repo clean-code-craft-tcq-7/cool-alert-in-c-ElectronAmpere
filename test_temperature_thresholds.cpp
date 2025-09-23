@@ -8,13 +8,13 @@ extern "C" {
 // Refactor for duplication. Deprecate old interface in favor of new one.
 // Distinguish thresholds per cooling type
 
-// TEST(ThresholdTest, CoolingDependentThresholds) {
-//     float passiveLimit = alertTemperatureForCoolingType(THERMAL_PASSIVE);
-//     float hiActiveLimit = alertTemperatureForCoolingType(THERMAL_ACTIVE);
-//     float medActiveLimit = alertTemperatureForCoolingType(THERMAL_HYBRID);
+TEST(ThresholdTest, CoolingDependentThresholds) {
+  float passiveLimit = alertTemperatureForCoolingType(THERMAL_PASSIVE);
+  float hiActiveLimit = alertTemperatureForCoolingType(THERMAL_ACTIVE);
+  float medActiveLimit = alertTemperatureForCoolingType(THERMAL_HYBRID);
 
-//     ASSERT_TRUE(passiveLimit < medActiveLimit);
-//     ASSERT_TRUE(medActiveLimit < hiActiveLimit);
-// }
+  ASSERT_TRUE(passiveLimit < medActiveLimit);
+  ASSERT_TRUE(medActiveLimit < hiActiveLimit);
+}
 
 // ----------- STEP 5 code ends -------

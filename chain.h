@@ -1,11 +1,12 @@
 #pragma once
 
-#include "./data_model.h"
 #include "./actions.h"
+#include "./data_model.h"
 
 // ----------- STEP 6 -----------------
 // Chain theBatteryDataModel to Action
 
-void batteryDataToAction(BatteryDataModel batteryData, Actuators (*actuators)());
+void batteryDataToAction(BatteryDataModel batteryData,
+                         Actuators (*actuators)());
 
 // ----------- STEP 6 code ends -------
