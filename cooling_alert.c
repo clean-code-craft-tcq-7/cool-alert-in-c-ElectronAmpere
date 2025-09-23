@@ -17,13 +17,13 @@ Action battery_temperature_to_action(CoolingType cooling_type,
     action.actionType = ALERT_EMAIL;
     snprintf(action.actionBody, sizeof(action.actionBody),
              "Temperature alert: %.1fF", temperature);
-    // // Step 4: duplicated logic for active cooling type
-    // // } else if (cooling_type == HI_ACTIVE_COOLING && temperature >
-    // HI_ACTIVE_COOLING_LIMIT) {
-    // //     action.actionType = ALERT_EMAIL;
-    // //     snprintf(action.actionBody, sizeof(action.actionBody),
-    // //         "Temperature alert: %.1fF", temperature);
-    // // Step 4 code ends -------
+    // Step 4: duplicated logic for active cooling type
+  } else if (cooling_type == HI_ACTIVE_COOLING &&
+             temperature > HI_ACTIVE_COOLING_LIMIT) {
+    action.actionType = ALERT_EMAIL;
+    snprintf(action.actionBody, sizeof(action.actionBody),
+             "Temperature alert: %.1fF", temperature);
+    // Step 4 code ends -------
   } else {
     action.actionType = NO_ALERT;
     action.actionBody[0] = '\0';
