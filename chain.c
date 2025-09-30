@@ -4,14 +4,12 @@
 
 // ----------- STEP 6 code starts -------
 
-void batteryDataToAction(BatteryDataModel batteryData,
-                         Actuators (*actuators)()) {
+void batteryDataToAction(BatteryDataModel batteryData, Actuator *actuator) {
   BatteryState state = classify_battery_state(batteryData);
-  if (state == BATTERY_ALERT) {
-    actuators().emailSender("manager@battery.com", "Battery Alert",
-                            "Battery temperature is too high",
-                            "noreply@battery.com");
+  if (state == BATTERY_ALERT && actuator && actuator->actuate) {
+    actuator->actuate(actuator, "Battery temperature is too high");
   }
 }
+
 
 // ----------- STEP 6 code ends -------

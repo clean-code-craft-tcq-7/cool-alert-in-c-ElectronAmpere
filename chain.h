@@ -6,7 +6,6 @@
 // ----------- STEP 6 -----------------
 // Chain theBatteryDataModel to Action
 
-void batteryDataToAction(BatteryDataModel batteryData,
-                         Actuators (*actuators)());
+void batteryDataToAction(BatteryDataModel batteryData, Actuator *actuator);
 
 // ----------- STEP 6 code ends -------

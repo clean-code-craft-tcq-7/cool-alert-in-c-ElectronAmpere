@@ -1,13 +1,11 @@
-#pragma once
+#ifndef ACTIONS_H
+#define ACTIONS_H
 
-// ----------- STEP 6 -----------------
-// Actuators
+typedef struct Actuator {
+    void (*actuate)(struct Actuator *self, const char *message);
+    void (*destroy)(struct Actuator *self);
+} Actuator;
 
-typedef struct {
-  int (*emailSender)(const char *to, const char *subject, const char *body,
-                     const char *from);
-} Actuators;
+void trigger_alert(Actuator *actuator, const char *msg);
 
-Actuators getActuatorSet();
-
-// ----------- STEP 6 code ends -------
+#endif // ACTIONS_H

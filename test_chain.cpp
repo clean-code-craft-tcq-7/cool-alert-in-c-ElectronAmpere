@@ -3,34 +3,37 @@ extern "C" {
 #include "./chain.h"
 }
 
-// ----------- STEP 6 code starts -------
+// Variables to capture email parameters from the stub
+const char* captured_message = nullptr;
 
-const char *email_to = 0;
-const char *email_subject = 0;
-const char *email_body = 0;
-const char *email_from = 0;
+// Stub actuator struct
+typedef struct StubActuator {
+    Actuator base;
+} StubActuator;
 
-int emailSenderStub(const char *to, const char *subject, const char *body,
-                    const char *from) {
-  email_to = to;
-  email_subject = subject;
-  email_body = body;
-  email_from = from;
-  return 1; // Success
+// Stub actuate function, captures the message passed
+void stub_actuate(Actuator* self, const char* message) {
+    captured_message = message;
 }
 
-Actuators actuatorStubSet() {
-  Actuators actuators;
-  actuators.emailSender = emailSenderStub;
-  return actuators;
+// Create the stub actuator instance
+Actuator* create_stub_actuator() {
+    StubActuator* stub = (StubActuator*)malloc(sizeof(StubActuator));
+    stub->base.actuate = stub_actuate;
+    stub->base.destroy = [](Actuator* self) { free(self); };
+    return &stub->base;
 }
 
 TEST(ChainTest, BatteryDataToAction) {
-  BatteryDataModel batteryData = {10342, THERMAL_HYBRID, 60};
+    BatteryDataModel batteryData = {10342, THERMAL_HYBRID, 60};
+    captured_message = nullptr;
 
-  batteryDataToAction(batteryData, actuatorStubSet);
+    Actuator* stub_actuator = create_stub_actuator();
 
-  ASSERT_STREQ(email_to, "manager@battery.com");
+    batteryDataToAction(batteryData, stub_actuator);
+
+    ASSERT_STREQ(captured_message, "Battery temperature is too high");
+
+    // Clean up
+    stub_actuator->destroy(stub_actuator);
 }
-
-// ----------- STEP 6 code ends -------
