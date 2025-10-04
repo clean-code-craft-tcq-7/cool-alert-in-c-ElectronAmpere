@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Install lizard
-        run: pip install lizard
+    - name: Install lizard
+      run: pip install lizard
 
-      - name: Limit complexity
-        run: $HOME/.local/bin/lizard --CCN 3
+    - name: Limit complexity
+      run: $HOME/.local/bin/lizard --CCN 3
