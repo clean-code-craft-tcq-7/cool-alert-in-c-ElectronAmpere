@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 extern "C" {
-#include "./classify.h"
+#include "../src/classify.h"
 }
 
 // ----------- STEP 5 -----------------

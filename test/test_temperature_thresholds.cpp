@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 extern "C" {
-#include "./thermal_management_types.h"
-#include "./thresholds.h"
+#include "../src/thermal_management_types.h"
+#include "../src/thresholds.h"
 }
 
 // ----------- STEP 5 -----------------

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 extern "C" {
-#include "./cooling_alert.h"
+#include "../src/cooling_alert.h"
 }
 
 // ----------- STEP 2 -----------------
