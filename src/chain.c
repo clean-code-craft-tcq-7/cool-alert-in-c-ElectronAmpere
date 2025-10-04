@@ -6,10 +6,13 @@
 
 void batteryDataToAction(BatteryDataModel batteryData, Actuator *actuator) {
   BatteryState state = classify_battery_state(batteryData);
-  if (state == BATTERY_ALERT && actuator && actuator->actuate) {
+  if (!actuator || !actuator->actuate) {
+    return;
+  }
+
+  if (state == BATTERY_ALERT) {
     actuator->actuate(actuator, "Battery temperature is too high");
   }
 }
-
 
 // ----------- STEP 6 code ends -------
